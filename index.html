@@ -6,6 +6,8 @@
     <meta description="Moon Escape">
     <link rel="icon" type="image/x-icon" href="img/moon/1.png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/settings.css">
     <title>Moon Escape</title>
 </head>
 
@@ -27,11 +29,47 @@
         </div>
     </div>
 
+    <!-- Settings -->
+    <div id="settings">
+        <div id="setTopBar">
+            <div id="setBarAudio">Audio</div>
+            <div id="setBarCredits">Credits</div>
+        </div>
+        <div id="setContent">
+            <div id="setAudio" class="active">
+                <h2>Music:</h2>
+                <div class="setContainer">
+                    <img src="./assets/Icons/ArrowsLeft.png" alt="+" id="setMusicAdjL" class="leftArrow">
+                    <h2 id="setMusicValue">50%</h2>
+                    <img src="./assets/Icons/ArrowsRight.png" alt="-" id="setMusicAdjR" class="rightArrow">
+                </div>
+                
+                <h2>SFX:</h2>
+                <div class="setContainer">
+                    <img src="./assets/Icons/ArrowsLeft.png" alt="+" id="setSFXAdjL" class="leftArrow">
+                    <h2 id="setSFXValue">50%</h2>
+                    <img src="./assets/Icons/ArrowsRight.png" alt="-" id="setSFXAdjR" class="rightArrow">
+                </div>
+            </div>
+            <div id="setCredits">
+                <h2>Author:</h2>
+                <h3><a href="https://github.com/YourUsername" target="_blank">Enej Leskovar</a></h3>
+            </div>
+            <div id="setReturnBtn"></div>
+        </div>
+        <div id="setBottomBar">
 
-    <div id="gameContainer"> <canvas id="gameCanvas"></canvas> </div>
+        </div>
+    </div>
+
+    <!-- Game -->
+    <div id="game">
+
+    </div>
 </body>
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 
 <script src="js/menu.js"></script>
+<script src="js/settings.js"></script>
 </html>

@@ -86,7 +86,11 @@
 		moonPlay.classList.add('fadeout');
 		moonTextLeft?.classList.add('fadeout');
 		moonTextRight?.classList.add('fadeout');
-		canvas.classList.add('transition');
-		veil.classList.add('transition');
+		canvas.classList.add('pre-transition');
+		
+		setTimeout(() => {
+			canvas.classList.add('transition');
+			veil.classList.add('transition');
+		}, 800);
 	}
 })();
