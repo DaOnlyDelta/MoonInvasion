@@ -7,7 +7,7 @@
 	const frameCount = 60;
 	const framePaths = [];
 	for (let i = 1; i <= frameCount; i++) {
-		framePaths.push(`../img/moon/${i}.png`);
+		framePaths.push(`./img/moon/${i}.png`);
 	}
 
 	// Preload images
