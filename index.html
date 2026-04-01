@@ -10,15 +10,28 @@
 </head>
 
 <body>
+    <div id="background"></div>
+    <div id="veil"></div>
+    
     <!-- Menu -->
-     <div id="menu">
-        <canvas id="moonCanvas"></canvas>
-        <h1>Moon<span id="moonSpacing"></span>Escape</h1>
-     </div>
+    <div id="menu">
+        <h1 id="moonTitle">
+            <span id="moonTextLeft" class="titleText">Moon</span>
+            <span id="moonWrap"><canvas id="moonCanvas"></canvas><svg id="moonPlay" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#e3e3e3" role="img" aria-label="Play"><path d="M320-203v-560l440 280-440 280Zm60-280Zm0 171 269-171-269-171v342Z" /></svg></span>
+            <span id="moonTextRight" class="titleText">Escape</span>
+        </h1>
+
+        <div id="settingsBtn">
+            <img src="./assets/Icons/Circle01.png" alt="" id="setBg">
+            <img src="./assets/Icons/Icon18.png" alt="Settings" id="setIcon">
+        </div>
+    </div>
+
+
     <div id="gameContainer"> <canvas id="gameCanvas"></canvas> </div>
 </body>
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 
-<script src="js/moonAnimation.js"></script>
+<script src="js/menu.js"></script>
 </html>
