@@ -1,9 +1,34 @@
 (function() {
     const settingsBtn = document.getElementById('settingsBtn');
     const settings = document.getElementById('settings');
+    const settingsWindow = document.getElementById('settingsWindow');
+    const settingsBorderPoly = document.getElementById('settingsBorderPoly');
+
+    function updateSettingsBorder() {
+        if (!settingsWindow || !settingsBorderPoly) return;
+
+        const style = getComputedStyle(settingsWindow);
+        const slantRaw = style.getPropertyValue('--setSlant').trim();
+        const slant = Number.parseFloat(slantRaw);
+        const slantSafe = Number.isFinite(slant) ? Math.max(0, Math.min(50, slant)) : 12;
+        const rightTop = 100 - slantSafe;
+
+        settingsBorderPoly.setAttribute('points', `0,0 ${rightTop},0 100,100 ${slantSafe},100`);
+    }
+
+    updateSettingsBorder();
+    window.addEventListener('resize', updateSettingsBorder);
     
     settingsBtn.addEventListener('click', () => {
         settings.classList.add('open');
+        veil.classList.add('fade');
+    });
+
+    veil.addEventListener('click', () => {
+        if (veil.classList.contains('fade')) {
+            settings.classList.remove('open');
+            veil.classList.remove('fade');
+        }
     });
 
     const creditsBtn = document.getElementById('setBarCredits');
@@ -69,6 +94,7 @@
 
     cancelBtn.addEventListener('click', () => {
         settings.classList.remove('open');
+        veil.classList.remove('fade');
         musicVolume = savedMusicVolume;
         sfxVolume = savedSFXVolume;
         musicValue.textContent = `${Math.round(musicVolume * 100)}%`;
@@ -79,6 +105,7 @@
 
     saveBtn.addEventListener('click', () => {
         settings.classList.remove('open');
+        veil.classList.remove('fade');
         savedMusicVolume = musicVolume;
         savedSFXVolume = sfxVolume;
     });

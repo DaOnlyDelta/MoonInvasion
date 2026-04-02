@@ -31,36 +31,43 @@
 
     <!-- Settings -->
     <div id="settings">
-        <div id="setTopBar">
-            <div id="setBarAudio">Audio</div>
-            <div id="setBarCredits">Credits</div>
-        </div>
-        <div id="setContent">
-            <div id="setAudio" class="active">
-                <h2>Music:</h2>
-                <div class="setContainer">
-                    <img src="./assets/Icons/ArrowsLeft.png" alt="+" id="setMusicAdjL" class="leftArrow">
-                    <h2 id="setMusicValue">50%</h2>
-                    <img src="./assets/Icons/ArrowsRight.png" alt="-" id="setMusicAdjR" class="rightArrow">
+        <div id="settingsWindow">
+            <div id="settingsInner">
+                <div id="setTopBar">
+                    <div id="setBarAudio">Audio</div>
+                    <div id="setBarCredits">Credits</div>
                 </div>
-                
-                <h2>SFX:</h2>
-                <div class="setContainer">
-                    <img src="./assets/Icons/ArrowsLeft.png" alt="+" id="setSFXAdjL" class="leftArrow">
-                    <h2 id="setSFXValue">50%</h2>
-                    <img src="./assets/Icons/ArrowsRight.png" alt="-" id="setSFXAdjR" class="rightArrow">
+                <div id="setContent">
+                    <div id="setAudio" class="active">
+                        <h2>Music:</h2>
+                        <div class="setContainer">
+                            <img src="./assets/Icons/ArrowsLeft.png" alt="+" id="setMusicAdjL" class="leftArrow">
+                            <h2 id="setMusicValue">50%</h2>
+                            <img src="./assets/Icons/ArrowsRight.png" alt="-" id="setMusicAdjR" class="rightArrow">
+                        </div>
+                        
+                        <h2>SFX:</h2>
+                        <div class="setContainer">
+                            <img src="./assets/Icons/ArrowsLeft.png" alt="+" id="setSFXAdjL" class="leftArrow">
+                            <h2 id="setSFXValue">50%</h2>
+                            <img src="./assets/Icons/ArrowsRight.png" alt="-" id="setSFXAdjR" class="rightArrow">
+                        </div>
+                    </div>
+                    <div id="setCredits">
+                        <h2>Author:</h2>
+                        <h3><a href="https://github.com/DaOnlyDelta/moonEscape" target="_blank">Enej Leskovar</a></h3>
+                    </div>
+                    <div id="setReturnBtn"></div>
+                </div>
+                <div id="setBottomBar">
+                    <div id="setBarCancel">Cancel</div>
+                    <div id="setBarSave">Save</div>
                 </div>
             </div>
-            <div id="setCredits">
-                <h2>Author:</h2>
-                <h3><a href="https://github.com/DaOnlyDelta/moonEscape" target="_blank">Enej Leskovar</a></h3>
-            </div>
-            <div id="setReturnBtn"></div>
         </div>
-        <div id="setBottomBar">
-            <div id="setBarCancel">Cancel</div>
-            <div id="setBarSave">Save</div>
-        </div>
+        <svg id="settingsBorder" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <polygon id="settingsBorderPoly" points="0,0 80,0 100,100 20,100" />
+        </svg>
     </div>
 
     <!-- Game -->
