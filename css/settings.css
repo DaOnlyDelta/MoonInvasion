@@ -9,22 +9,30 @@
     border: 2px solid rgb(105, 197, 255);
     opacity: 0.9;
     width: 50vh;
-    height: 50vh;
 }
 
 #settings.open {
     top: 50%;
 }
 
-#settings #setTopBar {
+#settings #setTopBar,
+#settings #setBottomBar {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
     height: 8vh;
+}
+
+#settings #setTopBar {
     border-bottom: 2px solid rgb(105, 197, 255);
 }
 
-#settings #setTopBar > div {
+#settings #setBottomBar {
+    border-top: 2px solid rgb(105, 197, 255);
+}
+
+#settings #setTopBar > div,
+#settings #setBottomBar > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,8 +45,13 @@
     border-right: 2px solid rgb(105, 197, 255);
 }
 
+#settings #setBottomBar #setBarCancel {
+    border-Right: 2px solid rgb(105, 197, 255);
+}
+
 #settings #setContent {
     padding: 5vh;
+    height: 25vh;
 }
 
 #settings #setContent #setAudio {
