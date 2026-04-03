@@ -54,6 +54,7 @@
 		if (trans) return;
 		canvas.classList.add('hovered');
 		moonPlay.classList.add('hovered');
+		window.Sound?.play('select');
 	});
 
 	canvas.addEventListener('mouseout', () => {
@@ -67,6 +68,7 @@
 		if (trans) return;
 		settingsBtn.classList.add('hovered');
 		setIcon.classList.add('hovered');
+		window.Sound?.play('select');
 	});
 
 	settingsBtn.addEventListener('mouseout', () => {
@@ -79,6 +81,8 @@
 	// Transition animation
 	function transition() {
 		trans = true;
+		window.gameStarted = true;
+		window.Sound?.play('drop');
 		canvas.classList.remove('hovered');
 		moonPlay.classList.remove('hovered');
 
@@ -91,6 +95,14 @@
 		setTimeout(() => {
 			canvas.classList.add('transition');
 			veil.classList.add('transition');
+
+			setTimeout(() => {
+				document.getElementById('background').classList.add('off');
+				document.getElementById('layout').classList.add('on');
+				window.unveilFromCenter({ duration: 1000 });
+			}, 2000);
 		}, 800);
 	}
+
+	if (true) transition();
 })();

@@ -1,4 +1,5 @@
 (function() {
+    const sound = window.Sound || null;
     const settingsBtn = document.getElementById('settingsBtn');
     const settings = document.getElementById('settings');
     const settingsWindow = document.getElementById('settingsWindow');
@@ -20,16 +21,26 @@
     window.addEventListener('resize', updateSettingsBorder);
     
     settingsBtn.addEventListener('click', () => {
+        window.openSettings();
+    });
+
+    window.openSettings = function() {
+        sound?.play('select');
         settings.classList.add('open');
         veil.classList.add('fade');
-    });
+    }
 
     veil.addEventListener('click', () => {
         if (veil.classList.contains('fade')) {
-            settings.classList.remove('open');
-            veil.classList.remove('fade');
+            window.closeSettings();
         }
     });
+
+    window.closeSettings = function() {
+        sound?.play('close');
+        settings.classList.remove('open');
+        veil.classList.remove('fade');
+    }
 
     const creditsBtn = document.getElementById('setBarCredits');
     const audioBtn = document.getElementById('setBarAudio');
@@ -37,11 +48,13 @@
     const audio = document.getElementById('setAudio');
 
     creditsBtn.addEventListener('click', () => {
+        sound?.play('select');
         credits.classList.add('active');
         audio.classList.remove('active');
     });
 
     audioBtn.addEventListener('click', () => {
+        sound?.play('select');
         audio.classList.add('active');
         credits.classList.remove('active');
     });
@@ -57,42 +70,58 @@
     const musicValue = document.getElementById('setMusicValue');
     const sfxValue = document.getElementById('setSFXValue');
 
+    if (sound) {
+        musicVolume = sound.getMusicVolume();
+        sfxVolume = sound.getSFXVolume();
+        savedMusicVolume = musicVolume;
+        savedSFXVolume = sfxVolume;
+        musicValue.textContent = `${Math.round(musicVolume * 100)}%`;
+        sfxValue.textContent = `${Math.round(sfxVolume * 100)}%`;
+        updateMusicVolume(musicVolume);
+        updateSFXVolume(sfxVolume);
+    }
+
     musicL.addEventListener('click', () => {
+        sound?.play('select');
         musicVolume = Math.max(0, musicVolume - 0.1);
         musicValue.textContent = `${Math.round(musicVolume * 100)}%`;
         updateMusicVolume(musicVolume);
     });
 
     musicR.addEventListener('click', () => {
+        sound?.play('select');
         musicVolume = Math.min(1, musicVolume + 0.1);
         musicValue.textContent = `${Math.round(musicVolume * 100)}%`;
         updateMusicVolume(musicVolume);
     });
 
     sfxL.addEventListener('click', () => {
+        sound?.play('select');
         sfxVolume = Math.max(0, sfxVolume - 0.1);
         sfxValue.textContent = `${Math.round(sfxVolume * 100)}%`;
         updateSFXVolume(sfxVolume);
     });
 
     sfxR.addEventListener('click', () => {
+        sound?.play('select');
         sfxVolume = Math.min(1, sfxVolume + 0.1);
         sfxValue.textContent = `${Math.round(sfxVolume * 100)}%`;
         updateSFXVolume(sfxVolume);
     });
 
     function updateMusicVolume(volume) {
-        // This function should be called whenever musicVolume changes to update the actual music volume in the game
+        sound?.setMusicVolume(volume);
     }
 
     function updateSFXVolume(volume) {
-        // This function should be called whenever sfxVolume changes to update the actual SFX volume in the game
+        sound?.setSFXVolume(volume);
     }
 
     const cancelBtn = document.getElementById('setBarCancel');
     const saveBtn = document.getElementById('setBarSave');
 
     cancelBtn.addEventListener('click', () => {
+        sound?.play('close');
         settings.classList.remove('open');
         veil.classList.remove('fade');
         musicVolume = savedMusicVolume;
@@ -104,6 +133,7 @@
     });
 
     saveBtn.addEventListener('click', () => {
+        sound?.play('get');
         settings.classList.remove('open');
         veil.classList.remove('fade');
         savedMusicVolume = musicVolume;
