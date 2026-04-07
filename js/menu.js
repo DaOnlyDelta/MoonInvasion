@@ -103,7 +103,7 @@
 		}, 800);
 	}
 
-	if (true) {
+	if (false) {
 		trans = true;
 		window.gameStarted = true;
 		window.Sound?.play('start');

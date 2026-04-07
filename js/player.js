@@ -9,8 +9,9 @@
 	window.playerVisible = window.playerVisible ?? false;
 
 	const frameCount = 8;
-	const moveSpeedVh = 28;
-	const bottomMarginRatio = 0.08;
+	const moveSpeedVw = 28;
+	const bottomMarginRatio = -0.02;
+	const horizontalClampInsetRatio = 0.4;
 	const pressedKeys = new Set();
 
 	function loadSprite(src) {
@@ -20,10 +21,10 @@
 	}
 
 	const sprites = {
-		idle: loadSprite('./assets/character/IDLE/idle_right.png'),
-		runUp: loadSprite('./assets/character/RUN/run_up.png'),
-		runDown: loadSprite('./assets/character/RUN/run_down.png'),
-		attack: loadSprite('./assets/character/ATK1/attack1_right.png'),
+		idle: loadSprite('./assets/character/IDLE/idle_up.png'),
+		runLeft: loadSprite('./assets/character/RUN/run_left.png'),
+		runRight: loadSprite('./assets/character/RUN/run_right.png'),
+		attack: loadSprite('./assets/character/ATK/attack1_up.png'),
 	};
 
 	const player = {
@@ -47,21 +48,21 @@
 	}
 
 	function getMovementState() {
-		const movingUp = pressedKeys.has('w') || pressedKeys.has('arrowup');
-		const movingDown = pressedKeys.has('s') || pressedKeys.has('arrowdown');
+		const movingLeft = pressedKeys.has('a') || pressedKeys.has('arrowleft');
+		const movingRight = pressedKeys.has('d') || pressedKeys.has('arrowright');
 
-		if (movingUp) return 'runUp';
-		if (movingDown) return 'runDown';
+		if (movingLeft) return 'runLeft';
+		if (movingRight) return 'runRight';
 		return 'idle';
 	}
 
 	function getMovementVector() {
-		const up = (pressedKeys.has('w') || pressedKeys.has('arrowup')) ? 1 : 0;
-		const down = (pressedKeys.has('s') || pressedKeys.has('arrowdown')) ? 1 : 0;
+		const left = (pressedKeys.has('a') || pressedKeys.has('arrowleft')) ? 1 : 0;
+		const right = (pressedKeys.has('d') || pressedKeys.has('arrowright')) ? 1 : 0;
 
 		return {
-			x: 0,
-			y: down - up,
+			x: right - left,
+			y: 0,
 		};
 	}
 
@@ -97,7 +98,7 @@
 		const drawWidth = frameWidth * scale;
 		const drawHeight = frameHeight * scale;
 
-		player.x = 0;
+		player.x = canvas.width / 2 - drawWidth / 2;
 		player.y = canvas.height - drawHeight - canvas.height * bottomMarginRatio;
 		player.width = drawWidth;
 		player.height = drawHeight;
@@ -156,14 +157,15 @@
 
 		const deltaSeconds = render.lastTime ? (now - render.lastTime) / 1000 : 0;
 		render.lastTime = now;
-		const moveSpeed = canvas.height * (moveSpeedVh / 100);
+		const moveSpeed = canvas.width * (moveSpeedVw / 100);
 
 		const movement = getMovementVector();
-		player.y += movement.y * moveSpeed * deltaSeconds;
+		player.x += movement.x * moveSpeed * deltaSeconds;
 
 		const metrics = ensurePlayerMetrics(sprite);
-		player.x = 0;
-		player.y = clamp(player.y, canvas.height / 2 - player.height / 2, Math.max(0, canvas.height - player.height));
+		const horizontalInset = player.width * horizontalClampInsetRatio;
+		player.x = clamp(player.x, -horizontalInset, Math.max(-horizontalInset, canvas.width - player.width + horizontalInset));
+		player.y = canvas.height - player.height - canvas.height * bottomMarginRatio;
 
 		if (state !== player.state) {
 			player.state = state;

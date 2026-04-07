@@ -12,7 +12,7 @@
 #background.off {
     background: url('../assets/star.jpg') no-repeat center center;
     background-size: cover;
-    top: -25%;
+    top: -12%;
 }
 
 #background.off::before {

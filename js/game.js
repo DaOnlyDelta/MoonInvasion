@@ -71,7 +71,7 @@
 
     let sx, sy;
     let dx = 0;
-    let dy = wHeight / 2;
+    let dy = wHeight / 1.25;
 
     const scale = 1.5;
     const upscaled = 2;
