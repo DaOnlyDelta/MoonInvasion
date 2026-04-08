@@ -73,7 +73,7 @@
     let dx = 0;
     let dy = wHeight / 1.25;
 
-    const scale = 1.5;
+    const scale = 1;
     const upscaled = 2;
     let width = 32 * upscaled;
     let height = 32 * upscaled;
