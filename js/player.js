@@ -9,7 +9,7 @@
 	window.playerVisible = window.playerVisible ?? false;
 
 	const frameCount = 8;
-	const moveSpeedVw = 28;
+	const moveSpeedVw = 40;
 	const bottomMarginRatio = -0.02;
 	const horizontalClampInsetRatio = 0.4;
 	const pressedKeys = new Set();
