@@ -2,14 +2,14 @@
 	const canvas = document.getElementById('player');
     const ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
-    canvas.height = window.innerHeight;
+    canvas.height = window.innerHeight * 2; // * 2 to make the canvas reach futher than the right wall
     canvas.width = canvas.height * (250 / 150);
 
     const laserCanvas = document.getElementById('lasers');
     const lctx = laserCanvas.getContext('2d');
     lctx.imageSmoothingEnabled = false;
-    laserCanvas.height = window.innerHeight;
-    laserCanvas.width = window.innerWidth;
+    laserCanvas.height = canvas.height;
+    laserCanvas.width = canvas.width;
 
     const scale = 0.8;
     const shipWidth = 350;
@@ -20,7 +20,7 @@
     const laserOutHeight = 10;
     const laserWidth = 211;
     const laserHeight = 92;
-    let dy = canvas.height / 2;
+    let dy = canvas.height / 4;
     let dyOffset = 0;
     const dx = 0;
     const frameOrder = [2, 2, 3, 3, 4, 4, 3, 3];
@@ -74,7 +74,7 @@
                 dy += moveSpeed * deltaTime / 16.67;
             }
 
-            const maxY = canvas.height - shipHeight * scale;
+            const maxY = canvas.height / 2 - shipHeight * scale;
             dy = Math.max(0, Math.min(maxY, dy));
 
             if (inputs.has('up')) {
